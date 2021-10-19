@@ -21,20 +21,20 @@ Data::Section::Simple is a simple module to extract data from '__DATA__'
 section of the file.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%autosetup -p1 -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 
-%make
+%make_build
 
 %check
 %make test
 
 %install
-%makeinstall_std
+%make_install
 
 %files
 %doc Changes LICENSE META.json META.yml MYMETA.yml README
-%{_mandir}/man3/*
+%doc %{_mandir}/man3/*
 %perl_vendorlib/*
